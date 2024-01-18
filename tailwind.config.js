@@ -2,6 +2,9 @@
 module.exports = {
 	content: ["./src/**/*.{js,jsx,ts,tsx}", "./index.html"],
 	theme: {
+		screens: {
+			'tall': { 'raw': '(min-height: 800px)' }
+		},
 		extend: {
 			colors: {
 				stdblue: "#005CA9",
@@ -9,8 +12,8 @@ module.exports = {
 				moonstone: "#2571CF",
 				stdorange: "#E67E22",
 				midnight: "#2D3436",
-				concrete: "#7F8C8D",
-				red: '#EB3B5A',
+				stdred: "#EB3B5A",
+				concrete: "#7f8c8d",
 			},
 		},
 	},

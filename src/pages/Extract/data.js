@@ -1,0 +1,90 @@
+export const extract = [{
+    "key": 1,
+    "meal": "LUNCH",
+    "date": "21/07",
+    "hour": "12:47"
+},
+{
+    "key": 2,
+    "meal": "DINNER",
+    "date": "21/07",
+    "hour": "19:30",
+},
+{
+    "key": 3,
+    "meal": "LUNCH",
+    "date": "22/07",
+    "hour": "12:47",
+},
+{
+    "key": 4,
+    "meal": "DINNER",
+    "date": "22/07",
+    "hour": "19:30",
+},
+{
+    "key": 5,
+    "meal": "LUNCH",
+    "date": "23/07",
+    "hour": "12:47",
+},
+{
+    "key": 6,
+    "meal": "DINNER",
+    "date": "23/07",
+    "hour": "19:30",
+},
+{
+    "key": 7,
+    "meal": "LUNCH",
+    "date": "24/07",
+    "hour": "12:47",
+},
+{
+    "key": 8,
+    "meal": "DINNER",
+    "date": "24/07",
+    "hour": "19:30",
+},
+{
+    "key": 9,
+    "meal": "LUNCH",
+    "date": "25/07",
+    "hour": "12:47",
+},
+{
+    "key": 10,
+    "meal": "DINNER",
+    "date": "25/07",
+    "hour": "19:30",
+},
+{
+    "key": 11,
+    "meal": "LUNCH",
+    "date": "26/07",
+    "hour": "12:47",
+},
+{
+    "key": 12,
+    "meal": "DINNER",
+    "date": "26/07",
+    "hour": "19:30",
+},
+{
+    "key": 13,
+    "meal": "LUNCH",
+    "date": "27/07",
+    "hour": "12:47",
+},
+{
+    "key": 14,
+    "meal": "DINNER",
+    "date": "27/07",
+    "hour": "19:30",
+},
+{
+    "key": 15,
+    "meal": "LUNCH",
+    "date": "28/07",
+    "hour": "12:47",
+}];

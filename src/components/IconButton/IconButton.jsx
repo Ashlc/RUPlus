@@ -1,7 +1,7 @@
 import React from "react";
-import "primeicons/primeicons.css";
+//import "primeicons/primeicons.css";
 
-function IconButton({ text, func, icon = ''}) {
+function IconButton({ text, func, icon = "" }) {
 	return (
 		<button
 			type="button"
@@ -11,8 +11,8 @@ function IconButton({ text, func, icon = ''}) {
 	  		focus:outline-stdorange
 	  		active:bg-stdblue active:text-white
 			disabled:bg-silver disabled:text-white">
-			<i className={"pi " + icon} style={{ fontSize: "1.5rem" }} />
 			<p className="select-none">{text}</p>
+			<i className={"pi " + icon} style={{ fontSize: "1.5rem" }} />
 		</button>
 	);
 }

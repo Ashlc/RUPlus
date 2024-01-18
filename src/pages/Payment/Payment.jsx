@@ -1,51 +1,69 @@
 import React from "react";
-import "./Payment.css";
-import QRCode from "../../assets/ProxyQRCode.png"
+import { useEffect } from "react";
+import QRCode from "./QRCodeComponent";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import PriceNMeal from "./Price&Meal";
 import Navigator from "../../components/Navigator/Navigator";
-import { useNavigate } from "react-router-dom";
 
-function Payment() {
-  const navigate = useNavigate();
-  const mealType = "ALMOÇO";
-  const price = 3.00;
+function Payment1() {
+	const location = useLocation();
+	const navigate = useNavigate();
+	const price = location.state.price;
+	const mealType = location.state.mealType;
+	const balance = location.state.balance;
 
-  const handleClick = () => {
-    navigate('/home');
-  }
+	useEffect(() => {
+		const createTransaction = async () => {
+			const idUser = localStorage.getItem("idUser");
+			const idWallet = localStorage.getItem("idWallet");
+			const data = { price, mealType, idUser, idWallet };
 
-  return (
-    <div className="flex justify-center w-full h-screen white-page">
-      <Navigator />
-      <div className="flex flex-col justify-center items-center text-center gap-7">
-        <div className="flex flex-col justify-center items-center">
-          {/*Tipo de comida e dinheiro*/}
-          <p className="text-blue mulish-font">{mealType}</p>
-          <p className="font-bold mulish-font big-text">
-            <span className="text-concrete">R$ </span>
-            {/*The monye is supposed to be in the INTER font, I didn't put it yet*/}
-            <span className="text-gray font-weigt-700">{price.toFixed(2).replace('.', ',')}</span>
-          </p>
-        </div>
-        <div className="gap-10 flex flex-col justify-center items-center">
-          <div className="gap-5 flex flex-col justify-center items-center">
-            {/*QR CODE*/}
-            <img src={QRCode} className="qr-code-size" alt="Qr Code for payment." />
-            <div className="flex flex-col justify-center items-center">
-              {/*Texto explicativo*/}
-              <p className="font-medium small-text mulish-font">APONTE O QR CODE PARA A CÂMERA PARA</p>
-              <p className="font-medium small-text mulish-font">REALIZAR O PAGAMENTO</p>
-            </div>
-          </div>
+			if (balance < price) {
+				console.log(balance, price);
+				navigate("/pagamento/erro");
+				return;
+			}
 
-          <div className="flex flex-col justify-center items-center">
-            {/*Cancelar Transação*/}
-            <button className="button-red mulish-font" onClick={handleClick}>CANCELAR TRANSAÇÃO</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+			try {
+				const response = await fetch(
+					"http://localhost:3001/transaction/createTr",
+					{
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify(data),
+					},
+				);
+				if (response.ok) {
+					setTimeout(() => {
+						navigate("/pagamento/confirmado", {state: {price, mealType}});
+						return;
+					}, 1500);
+				}
+			} catch (error) {
+				console.log(error.message);
+			}
+		}
+		createTransaction();
+	}, []);
 
+	return (
+		<main className="flex justify-center w-full h-screen">
+			<div className="flex flex-col justify-start tall:justify-center pt-14 tall:pt-0 items-center text-center gap-10 tall:gap-16">
+				<PriceNMeal mealType={mealType} price={price} white={false} />
+				<QRCode />
+				<div className="flex flex-col justify-center items-center">
+					<Link
+						to="/home"
+						className="font-black text-xs text-stdred border rounded-3xl border-stdred py-3 px-7">
+						CANCELAR TRANSAÇÃO
+					</Link>
+				</div>
+				<Navigator place={"payment"} />
+			</div>
+		</main>
+	);
+}
 
-export default Payment;
+export default Payment1;

@@ -3,7 +3,7 @@ import React from "react";
 function Form({ keyup }) {
 	const data = [
 		{
-			id: "fullname",
+			id: "name",
 			text: "NOME COMPLETO",
 			type: "text",
 			placeholder: "",

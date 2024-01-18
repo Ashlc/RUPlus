@@ -1,0 +1,10 @@
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="barcode">
+<mask id="mask0_173_175" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="50" height="50">
+<rect id="Bounding box" width="50" height="50" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_173_175)">
+<path id="barcode_2" d="M2.08325 39.5834V10.4167H6.24992V39.5834H2.08325ZM8.33325 39.5834V10.4167H12.4999V39.5834H8.33325ZM14.5833 39.5834V10.4167H16.6666V39.5834H14.5833ZM20.8333 39.5834V10.4167H24.9999V39.5834H20.8333ZM27.0833 39.5834V10.4167H33.3333V39.5834H27.0833ZM35.4166 39.5834V10.4167H37.4999V39.5834H35.4166ZM41.6666 39.5834V10.4167H47.9166V39.5834H41.6666Z" fill="#005CA9"/>
+</g>
+</g>
+</svg>

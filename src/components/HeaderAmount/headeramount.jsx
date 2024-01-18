@@ -1,31 +1,35 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function HeaderAmount(){
-    const [saldo, setSaldo] = useState(0.0);
+function HeaderAmount({}) {
+	const [balance, setBalance] = useState(0);
 
-    const atualizarSaldo = () => {
-        var novoSaldo = saldo - 3;
-        if(novoSaldo <= 0){
-            novoSaldo = 0;
-        } 
-        setSaldo(novoSaldo);
-    };
-    return(
-        <div className="mobile-menu flex items-center justify-center bg-[#005CA9] w-full p-3 rounded-b-3xl">
-            <div className="saldoText text-[#fff] font-extrabold w-1/2 flex justify-end ml-4">
-                <h1>SALDO ATUAL</h1> 
-            </div>
-            <div className="saldoValue text-[#fff] w-1/2 flex items-center">
-                <div className="text-base mr-1 ml-4">
-                    <h1>R$</h1>
-                </div>
-                <div className="text-lg">
-                    <h1>{saldo}</h1>
-                </div>
-            </div>
-        </div>
-    );
+	const getData = async () => {
+		const id = localStorage.getItem("idUser");
+		const response = await fetch(`http://localhost:3001/user/getUser`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ id }),
+		});
+		const data = await response.json();
+		setBalance(data.wallet[0].balance);
+	};
+
+	useEffect(() => {
+		getData();
+	}, []);
+
+	return (
+		<div className="absolute top-0 flex items-center gap-10 justify-center bg-stdblue w-full p-3 rounded-b-3xl">
+			<p className=" text-white font-extrabold">SALDO ATUAL</p>
+			<div className="text-white w-fit gap-2 flex items-center">
+				<p>R$</p>
+				<p className="text-lg">{balance}</p>
+			</div>
+		</div>
+	);
 }
 
 export default HeaderAmount;
